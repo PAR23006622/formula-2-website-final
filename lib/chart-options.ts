@@ -9,7 +9,7 @@ export const createChartOptions = (
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: (window.innerWidth <= 640 && (type === 'pie' || type === 'polarArea')) ? 'bottom' : 'top',
+        position: 'top' as 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea', // Ensure this is a valid type
         labels: {
           color: themeOptions.textColor,
           padding: 20,
@@ -19,11 +19,15 @@ export const createChartOptions = (
         },
       },
       tooltip: {
-        titleColor: '#fff',
-        bodyColor: '#fff',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        padding: 12,
-        cornerRadius: 8,
+        title: {
+          color: themeOptions.textColor,
+        },
+        body: {
+          color: themeOptions.textColor,
+        },
+        backgroundColor: themeOptions.backgroundColor,
+        padding: 10,
+        cornerRadius: 4,
       },
     },
     scales: type !== 'pie' ? {
