@@ -13,9 +13,3 @@ export default function Home() {
     </div>
   );
 }
-
-export const metadata = {
-    title: 'Formula 2 Analytics',
-    description: 'Stay ahead in the fast-paced world of Formula 2 racing with Formula 2 Insights. Explore in-depth analysis, race predictions, and the latest news from the grid. Discover driver stats, team performance reviews, and expert commentary. Join our community of racing enthusiasts and delve into the excitement of every turn and lap.',
-    viewport: 'width=device-width, initial-scale=1',
-};

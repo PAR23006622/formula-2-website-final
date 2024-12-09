@@ -35,32 +35,7 @@ export function PodiumDistributionChart() {
 
   return (
     <div className="w-full h-full">
-      <Pie data={data} options={{
-        ...options,
-        plugins: {
-          ...options.plugins,
-          legend: {
-            ...options.plugins.legend,
-            position: 'top' as const, // Use one of the allowed values: 'top', 'bottom', 'left', 'right', 'center', 'chartArea'
-            labels: {
-              ...options.plugins.legend?.labels,
-              color: '#000',
-              padding: 20,
-              font: {
-                size: 16,
-              },
-            },
-          },
-          tooltip: {
-            ...options.plugins.tooltip,
-            titleColor: '#000',
-            bodyColor: '#000',
-            backgroundColor: '#fff',
-            padding: 10,
-            cornerRadius: 5,
-          },
-        },
-      }} />
+      <Pie data={data} options={options} />
     </div>
   );
 }
