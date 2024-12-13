@@ -1,4 +1,3 @@
-// Mapping of F1 locations to their ISO country codes
 export const locationToCountryCode: { [key: string]: string } = {
   "Sakhir": "bh",
   "Jeddah": "sa",

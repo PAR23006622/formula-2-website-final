@@ -31,36 +31,27 @@ export function Sidebar() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Clean up body overflow when component unmounts
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
-
-  // Update body overflow when menu state changes
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-  }, [isMobileMenuOpen]);
-
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : 'auto';
   };
 
   if (isMobile) {
     return (
       <>
         {/* Mobile Header */}
-        <div className="fixed top-4 left-4 right-4 z-50">
-          <div className="bg-[#0090d0]/90 backdrop-blur-md text-white rounded-2xl shadow-lg flex items-center h-14">
-            <button
-              onClick={toggleMenu}
-              className="w-[48px] h-[48px] flex items-center justify-center hover:bg-white/10 transition-colors rounded-xl"
-              aria-label="Toggle menu"
-            >
-              <MenuIcon className="h-6 w-6" />
-            </button>
-            <div className="flex-1 text-center font-semibold">F2 Analytics</div>
+        <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <div className="mx-4 my-4">
+            <div className="bg-[#0090d0]/90 backdrop-blur-md text-white rounded-2xl shadow-lg flex items-center h-14">
+              <button
+                onClick={toggleMenu}
+                className="w-[48px] h-[48px] flex items-center justify-center hover:bg-white/10 transition-colors rounded-xl"
+                aria-label="Toggle menu"
+              >
+                <MenuIcon className="h-6 w-6" />
+              </button>
+              <div className="flex-1 text-center font-semibold">F2 Analytics</div>
+            </div>
           </div>
         </div>
 

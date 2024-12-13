@@ -9,7 +9,7 @@ export const createChartOptions = (
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top' as 'top' | 'bottom' | 'left' | 'right' | 'center' | 'chartArea', // Ensure this is a valid type
+        position: 'top' as const, // Explicitly type this as one of the allowed values
         labels: {
           color: themeOptions.textColor,
           padding: 20,
@@ -19,13 +19,9 @@ export const createChartOptions = (
         },
       },
       tooltip: {
-        title: {
-          color: themeOptions.textColor,
-        },
-        body: {
-          color: themeOptions.textColor,
-        },
-        backgroundColor: themeOptions.backgroundColor,
+        titleColor: themeOptions.textColor,
+        bodyColor: themeOptions.textColor,
+        backgroundColor: themeOptions.backgroundColor ?? '#fff', // Added default value
         padding: 10,
         cornerRadius: 4,
       },

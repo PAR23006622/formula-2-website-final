@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export interface ChartThemeOptions {
-  backgroundColor: any;
+  backgroundColor: string;
   textColor: string;
   gridColor: string;
   fontSize: {
@@ -32,8 +32,8 @@ export function useChartTheme() {
       const isDark = theme === 'dark';
       const baseFontSize = window.innerWidth <= 640 ? 0.8 : 1;
 
-      setOptions(prevState => ({
-        ...prevState,
+      setOptions(prevOptions => ({
+        ...prevOptions,
         textColor: isDark ? '#fff' : '#000',
         gridColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
         fontSize: {

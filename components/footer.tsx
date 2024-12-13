@@ -7,7 +7,7 @@ import Link from "next/link";
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const linkStyles = "transition-all duration-300 hover:text-white/90 hover:translate-x-1 truncate block";
+  const linkStyles = "transition-all duration-300 hover:text-white/90 hover:translate-x-1";
   const iconStyles = "transition-all duration-300 hover:text-white/90 hover:scale-110";
 
   return (
@@ -17,8 +17,8 @@ export function Footer() {
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Quick Links */}
-              <div className="text-center md:text-left">
-                <h3 className="font-semibold mb-4 truncate">Quick Links</h3>
+              <div>
+                <h3 className="font-semibold mb-4">Quick Links</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/driver-standings" className={linkStyles}>
@@ -39,11 +39,11 @@ export function Footer() {
               </div>
 
               {/* Contact */}
-              <div className="text-center md:text-left">
-                <h3 className="font-semibold mb-4 truncate">Contact</h3>
+              <div>
+                <h3 className="font-semibold mb-4">Contact</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2 justify-center md:justify-start">
-                    <Mail className="h-4 w-4 flex-shrink-0" />
+                  <li className="flex items-center gap-2">
+                    <Mail className="h-4 w-4" />
                     <a href="mailto:contact@f2analytics.com" className={linkStyles}>
                       contact@f2analytics.com
                     </a>
@@ -52,9 +52,9 @@ export function Footer() {
               </div>
 
               {/* Social Media */}
-              <div className="text-center md:text-left">
-                <h3 className="font-semibold mb-4 truncate">Follow Us</h3>
-                <div className="flex gap-4 justify-center md:justify-start flex-wrap">
+              <div>
+                <h3 className="font-semibold mb-4">Follow Us</h3>
+                <div className="flex gap-4">
                   <a href="#" className={iconStyles}>
                     <Twitter className="h-5 w-5" />
                   </a>
@@ -71,8 +71,8 @@ export function Footer() {
               </div>
 
               {/* Legal */}
-              <div className="text-center md:text-left">
-                <h3 className="font-semibold mb-4 truncate">Legal</h3>
+              <div>
+                <h3 className="font-semibold mb-4">Legal</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/privacy" className={linkStyles}>
@@ -88,8 +88,8 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-white/20 text-center">
-              <p className="truncate">© {currentYear} Formula 2 Analytics. All rights reserved.</p>
+            <div className="mt-8 pt-4 border-t border-white/20 text-center text-sm">
+              <p>© {currentYear} Formula 2 Analytics. All rights reserved.</p>
             </div>
           </div>
         </Card>

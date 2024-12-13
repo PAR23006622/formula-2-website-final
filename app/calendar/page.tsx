@@ -1,55 +1,7 @@
-"use client";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Calendar } from "lucide-react";
 import Image from "next/image";
 import { locationToCountryCode } from "@/lib/country-codes";
-import { useState } from "react";
-
-interface RaceCardProps {
-  round: number;
-  place: string;
-  dates: string;
-}
-
-const RaceCard = ({ round, place, dates }: RaceCardProps) => {
-  const [imgSrc, setImgSrc] = useState(`https://flagcdn.com/w640/${locationToCountryCode[place]}.png`);
-
-  return (
-    <Card className="chart-card h-full hover:shadow-[0_0_30px_rgba(0,144,208,0.3)] dark:hover:shadow-[0_0_30px_rgba(0,144,208,0.15)] transition-all duration-300">
-      <CardHeader className="text-center pb-2">
-        <CardTitle>Round {round}</CardTitle>
-      </CardHeader>
-      <div className="relative w-full px-4">
-        <div className="relative w-full aspect-[3/2]">
-          {locationToCountryCode[place] && (
-            <Image
-              src={imgSrc}
-              alt={`${place} flag`}
-              fill
-              className="object-cover rounded-2xl"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority
-              onError={() => {
-                setImgSrc(`https://flagcdn.com/${locationToCountryCode[place]}.svg`);
-              }}
-            />
-          )}
-        </div>
-      </div>
-      <CardContent className="space-y-4 text-center mt-4">
-        <div className="flex items-center justify-center gap-2">
-          <MapPin className="h-4 w-4 text-primary" />
-          <span className="text-lg font-medium">{place}</span>
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <Calendar className="h-4 w-4 text-primary" />
-          <span className="text-sm text-muted-foreground">{dates}</span>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
 
 const races = [
   {
@@ -128,10 +80,38 @@ export default function CalendarPage() {
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-2xl md:text-3xl font-bold text-center mb-8">2024 Formula 2 Race Calendar</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {races.map((race) => (
-          <RaceCard key={race.round} {...race} />
-        ))}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {races.map((race) => {
+          const countryCode = locationToCountryCode[race.place];
+          return (
+            <Card key={race.round} className="chart-card h-auto">
+              <CardHeader className="pb-0">
+                <CardTitle className="text-xl text-center">Round {race.round}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-4">
+                <div className="relative w-full rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden" style={{ paddingBottom: "66.67%" }}>
+                  <Image
+                    src={`https://flagcdn.com/w640/${countryCode}.png`}
+                    alt={`${race.place} flag`}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 justify-center">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    <span className="text-lg font-medium">{race.place}</span>
+                  </div>
+                  <div className="flex items-center gap-2 justify-center">
+                    <Calendar className="h-4 w-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">{race.dates}</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );
