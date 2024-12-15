@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Twitter, Instagram, Facebook, Youtube, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -43,31 +43,12 @@ export function Footer() {
                 <h3 className="font-semibold mb-4">Contact</h3>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" />
-                    <a href="mailto:contact@f2analytics.com" className={linkStyles}>
-                      contact@f2analytics.com
+                    <Mail className="h-4 w-4 truncate" />
+                    <a href="mailto:par23006622@heartofyorkshire.ac.uk" className={linkStyles}>
+                      par23006622@heartofyorkshire.ac.uk
                     </a>
                   </li>
                 </ul>
-              </div>
-
-              {/* Social Media */}
-              <div>
-                <h3 className="font-semibold mb-4">Follow Us</h3>
-                <div className="flex gap-4">
-                  <a href="#" className={iconStyles}>
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a href="#" className={iconStyles}>
-                    <Instagram className="h-5 w-5" />
-                  </a>
-                  <a href="#" className={iconStyles}>
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                  <a href="#" className={iconStyles}>
-                    <Youtube className="h-5 w-5" />
-                  </a>
-                </div>
               </div>
 
               {/* Legal */}

@@ -33,16 +33,15 @@ export function Sidebar() {
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : 'auto';
   };
 
   if (isMobile) {
     return (
       <>
         {/* Mobile Header */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="fixed top-0 left-0 right-0 z-50">
           <div className="mx-4 my-4">
-            <div className="bg-[#0090d0]/90 backdrop-blur-md text-white rounded-2xl shadow-lg flex items-center h-14">
+            <div className="bg-[#0090d0] text-white rounded-2xl shadow-lg flex items-center h-14">
               <button
                 onClick={toggleMenu}
                 className="w-[48px] h-[48px] flex items-center justify-center hover:bg-white/10 transition-colors rounded-xl"
@@ -67,7 +66,7 @@ export function Sidebar() {
         {/* Mobile Menu */}
         <div
           className={cn(
-            "fixed top-4 left-4 bottom-4 w-auto min-w-[200px] bg-[#0090d0]/90 backdrop-blur-md z-50 rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out",
+            "fixed top-4 left-4 bottom-4 w-auto min-w-[200px] bg-[#0090d0] z-50 rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out",
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-[calc(100%+16px)]"
           )}
         >

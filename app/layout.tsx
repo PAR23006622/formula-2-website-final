@@ -22,17 +22,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-y-auto`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen bg-background">
+          <div className="relative min-h-screen bg-background">
             <Sidebar />
-            <div className="min-h-screen w-full md:pl-[248px] flex flex-col">
-              <main className="flex-1 w-full pt-24 md:pt-8 px-4 md:px-6 pb-8">
+            <div className="min-h-screen w-full md:pl-[248px]">
+              <main className="w-full pt-24 md:pt-8 px-4 md:px-6 pb-8">
                 {children}
               </main>
               <Footer />
