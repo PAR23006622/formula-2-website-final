@@ -1,6 +1,18 @@
+import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Flag, Users } from "lucide-react";
 import Image from "next/image";
+import { StructuredData } from "@/components/seo/structured-data";
+import { generateWebsiteSchema } from "@/lib/schema";
+
+export const metadata: Metadata = {
+  title: 'Teams & Drivers',
+  description: 'Comprehensive guide to Formula 2 teams and drivers for the 2024 season. Discover team profiles, driver lineups, and performance statistics.',
+  openGraph: {
+    title: 'F2 Teams & Drivers 2024',
+    description: 'Meet the Formula 2 teams and drivers competing in the 2024 championship season.',
+  }
+};
 
 const teams = [
   {
@@ -167,83 +179,86 @@ const teams = [
 
 export default function TeamsDrivers() {
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl md:text-3xl font-bold text-center mb-8">Formula 2 Teams & Drivers 2024</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {teams.map((team) => (
-          <Card key={team.name} className="chart-card h-auto hover:shadow-[0_0_30px_rgba(0,144,208,0.3)] dark:hover:shadow-[0_0_30px_rgba(0,144,208,0.15)] transition-all duration-300">
-            <CardHeader className="text-center">
-              <div className="relative w-[140px] h-[79px] mx-auto mb-4">
-                <Image
-                  src={team.logo}
-                  alt={`${team.name} logo`}
-                  fill
-                  className="object-contain rounded-lg"
-                  sizes="140px"
-                  priority
-                />
-              </div>
-              <CardTitle className="text-xl">{team.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Users className="h-4 w-4 text-primary" />
-                    <p className="text-sm font-medium text-muted-foreground">Drivers</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    {team.drivers.map((driver) => (
-                      <div key={driver.name} className="text-center">
-                        <div className="relative w-[100px] h-[65px] mx-auto mb-2">
-                          <Image
-                            src={driver.photo}
-                            alt={driver.name}
-                            fill
-                            className="object-cover rounded-lg"
-                            sizes="100px"
-                            priority
-                          />
+    <>
+      <StructuredData data={generateWebsiteSchema()} />
+      <div className="container mx-auto px-4 py-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-8">Formula 2 Teams & Drivers 2024</h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {teams.map((team) => (
+            <Card key={team.name} className="chart-card h-auto hover:shadow-[0_0_30px_rgba(0,144,208,0.3)] dark:hover:shadow-[0_0_30px_rgba(0,144,208,0.15)] transition-all duration-300">
+              <CardHeader className="text-center">
+                <div className="relative w-[140px] h-[79px] mx-auto mb-4">
+                  <Image
+                    src={team.logo}
+                    alt={`${team.name} logo`}
+                    fill
+                    className="object-contain rounded-lg"
+                    sizes="140px"
+                    priority
+                  />
+                </div>
+                <CardTitle className="text-xl">{team.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Users className="h-4 w-4 text-primary" />
+                      <p className="text-sm font-medium text-muted-foreground">Drivers</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {team.drivers.map((driver) => (
+                        <div key={driver.name} className="text-center">
+                          <div className="relative w-[100px] h-[65px] mx-auto mb-2">
+                            <Image
+                              src={driver.photo}
+                              alt={driver.name}
+                              fill
+                              className="object-cover rounded-lg"
+                              sizes="100px"
+                              priority
+                            />
+                          </div>
+                          <p className="text-sm font-medium">{driver.name}</p>
                         </div>
-                        <p className="text-sm font-medium">{driver.name}</p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Flag className="h-4 w-4 text-primary" />
+                      <p className="text-sm font-medium text-muted-foreground">Base</p>
+                    </div>
+                    <p className="text-sm ml-6">{team.base}</p>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Trophy className="h-4 w-4 text-primary" />
+                      <p className="text-sm font-medium text-muted-foreground">2023 Achievements</p>
+                    </div>
+                    <div className="ml-6 grid grid-cols-3 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Wins</p>
+                        <p className="text-lg font-semibold">{team.achievements.wins}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Flag className="h-4 w-4 text-primary" />
-                    <p className="text-sm font-medium text-muted-foreground">Base</p>
-                  </div>
-                  <p className="text-sm ml-6">{team.base}</p>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Trophy className="h-4 w-4 text-primary" />
-                    <p className="text-sm font-medium text-muted-foreground">2023 Achievements</p>
-                  </div>
-                  <div className="ml-6 grid grid-cols-3 gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground">Wins</p>
-                      <p className="text-lg font-semibold">{team.achievements.wins}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Podiums</p>
-                      <p className="text-lg font-semibold">{team.achievements.podiums}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Poles</p>
-                      <p className="text-lg font-semibold">{team.achievements.poles}</p>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Podiums</p>
+                        <p className="text-lg font-semibold">{team.achievements.podiums}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Poles</p>
+                        <p className="text-lg font-semibold">{team.achievements.poles}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
