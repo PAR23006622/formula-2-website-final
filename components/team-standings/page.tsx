@@ -66,7 +66,7 @@ export default function TeamStandings() {
             <CardHeader>
               <CardTitle>Team Reliability</CardTitle>
               <ChartDescription>
-                Visualizes the reliability percentage of each team's cars over races. Higher percentages indicate better reliability and fewer technical issues.
+                Visualizes the reliability percentage of each team&#39;s cars over races. Higher percentages indicate better reliability and fewer technical issues.
               </ChartDescription>
             </CardHeader>
             <CardContent className="chart-content">
@@ -80,7 +80,7 @@ export default function TeamStandings() {
             <CardHeader>
               <CardTitle>Qualifying Performance</CardTitle>
               <ChartDescription>
-                Shows teams' average qualifying positions. Lower positions (closer to 1) indicate better qualifying performance and grid position advantages.
+                Shows teams&#39; average qualifying positions. Lower positions (closer to 1) indicate better qualifying performance and grid position advantages.
               </ChartDescription>
             </CardHeader>
             <CardContent className="chart-content">
@@ -94,7 +94,7 @@ export default function TeamStandings() {
             <CardHeader>
               <CardTitle>Race Wins Distribution</CardTitle>
               <ChartDescription>
-                A pie chart showing the distribution of race wins among teams. Each slice represents a team's proportion of total wins this season.
+                A pie chart showing the distribution of race wins among teams. Each slice represents a team&#39;s proportion of total wins this season.
               </ChartDescription>
             </CardHeader>
             <CardContent className="chart-content">
@@ -122,7 +122,7 @@ export default function TeamStandings() {
             <CardHeader>
               <CardTitle>Podiums Distribution</CardTitle>
               <ChartDescription>
-                Shows how podium finishes are distributed among teams. Each segment represents a team's share of total podium positions achieved.
+                Shows how podium finishes are distributed among teams. Each segment represents a team&#39;s share of total podium positions achieved.
               </ChartDescription>
             </CardHeader>
             <CardContent className="chart-content">
