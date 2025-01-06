@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartDescription } from "@/components/ui/chart-description";
 
 interface ChartContainerProps {
@@ -11,14 +12,16 @@ interface ChartContainerProps {
 
 export function ChartContainer({ title, description, children }: ChartContainerProps) {
   return (
-    <div className="chart-card">
-      <h2 className="text-lg font-semibold mb-2">{title}</h2>
-      <ChartDescription>{description}</ChartDescription>
-      <div className="chart-content">
+    <Card className="chart-card">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <ChartDescription>{description}</ChartDescription>
+      </CardHeader>
+      <CardContent className="chart-content">
         <div className="chart-wrapper">
           {children}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

@@ -35,10 +35,13 @@ export function Sidebar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const renderIcon = (Icon: any) => {
+    return <Icon className="h-5 w-5" aria-hidden="true" />;
+  };
+
   if (isMobile) {
     return (
       <>
-        {/* Mobile Header */}
         <div className="fixed top-0 left-0 right-0 z-50">
           <div className="mx-4 my-4">
             <div className="bg-[#0090d0] text-white rounded-2xl shadow-lg flex items-center h-14">
@@ -47,14 +50,13 @@ export function Sidebar() {
                 className="w-[48px] h-[48px] flex items-center justify-center hover:bg-white/10 transition-colors rounded-xl"
                 aria-label="Toggle menu"
               >
-                <MenuIcon className="h-6 w-6" />
+                {renderIcon(MenuIcon)}
               </button>
               <div className="flex-1 text-center font-semibold">F2 Analytics</div>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
@@ -63,7 +65,6 @@ export function Sidebar() {
           />
         )}
 
-        {/* Mobile Menu */}
         <div
           className={cn(
             "fixed top-4 left-4 bottom-4 w-auto min-w-[200px] bg-[#0090d0] z-50 rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out",
@@ -77,7 +78,7 @@ export function Sidebar() {
               className="p-3 rounded-xl hover:bg-white/10 transition-colors text-white ml-4"
               aria-label="Close menu"
             >
-              <XIcon className="h-5 w-5" />
+              {renderIcon(XIcon)}
             </button>
           </div>
 
@@ -94,7 +95,7 @@ export function Sidebar() {
                     : "text-white hover:bg-white/10"
                 )}
               >
-                <item.icon className="mr-3 h-5 w-5" />
+                <span className="mr-3">{renderIcon(item.icon)}</span>
                 {item.name}
               </Link>
             ))}
@@ -127,7 +128,7 @@ export function Sidebar() {
                     : "text-white hover:bg-white/10"
                 )}
               >
-                <item.icon className="mr-3 h-5 w-5" />
+                <span className="mr-3">{renderIcon(item.icon)}</span>
                 <span>{item.name}</span>
               </Link>
             );

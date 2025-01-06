@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,6 +37,10 @@ ChartJS.register(
   PieController,
   LineController
 );
+
+// Set default options
+ChartJS.defaults.responsive = true;
+ChartJS.defaults.maintainAspectRatio = false;
 
 // Set default colors to respect system theme
 ChartJS.defaults.color = 'currentColor';

@@ -1,55 +1,17 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartDescription } from "@/components/ui/chart-description";
 import { Line, Radar } from "react-chartjs-2";
-import "@/lib/chart-config";
-import { chartColors, chartBackgrounds } from "@/lib/chart-utils";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-
-const pointsData = {
-  labels: ["Race 1", "Race 2", "Race 3", "Race 4", "Race 5", "Race 6"],
-  datasets: [
-    {
-      label: "Pourchaire",
-      data: [25, 44, 58, 83, 95, 108],
-      borderColor: chartColors.primary,
-      backgroundColor: chartBackgrounds.primary,
-      fill: true,
-      tension: 0.4,
-    },
-    {
-      label: "Vesti",
-      data: [18, 36, 52, 71, 89, 96],
-      borderColor: chartColors.secondary,
-      backgroundColor: chartBackgrounds.secondary,
-      fill: true,
-      tension: 0.4,
-    },
-  ],
-};
-
-const performanceData = {
-  labels: ["Qualifying", "Race Pace", "Overtaking", "Tire Management", "Wet Performance"],
-  datasets: [
-    {
-      label: "Pourchaire",
-      data: [95, 90, 85, 92, 88],
-      borderColor: chartColors.primary,
-      backgroundColor: chartBackgrounds.primary,
-    },
-    {
-      label: "Vesti",
-      data: [88, 92, 90, 85, 86],
-      borderColor: chartColors.secondary,
-      backgroundColor: chartBackgrounds.secondary,
-    },
-  ],
-};
+import { featuredChartData } from "@/lib/chart-data";
+import "@/lib/chart-config";
 
 export function FeaturedCharts() {
   const { theme } = useTheme();
   const [options, setOptions] = useState({});
+  const [key, setKey] = useState(0); // Add key for forcing re-render
 
   useEffect(() => {
     const updateOptions = () => {
@@ -126,15 +88,12 @@ export function FeaturedCharts() {
           },
         },
       });
-    };
-
-    const handleResize = () => {
-      updateOptions();
+      setKey(prev => prev + 1); // Force re-render when options change
     };
 
     updateOptions();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', updateOptions);
+    return () => window.removeEventListener('resize', updateOptions);
   }, [theme]);
 
   return (
@@ -142,10 +101,13 @@ export function FeaturedCharts() {
       <Card className="chart-card">
         <CardHeader>
           <CardTitle>Championship Progress</CardTitle>
+          <ChartDescription>
+            This graph shows how drivers accumulate points throughout the season. Each line represents a driver's total points after each race, helping you track their championship battle and momentum shifts.
+          </ChartDescription>
         </CardHeader>
         <CardContent className="chart-content">
           <div className="chart-wrapper">
-            <Line data={pointsData} options={options} />
+            <Line key={`line-${key}`} data={featuredChartData.points} options={options} />
           </div>
         </CardContent>
       </Card>
@@ -153,10 +115,13 @@ export function FeaturedCharts() {
       <Card className="chart-card">
         <CardHeader>
           <CardTitle>Driver Performance Analysis</CardTitle>
+          <ChartDescription>
+            A radar chart comparing drivers across five key performance areas. The larger the area covered, the stronger the overall performance. This visualization helps identify drivers' strengths and weaknesses in different aspects of racing.
+          </ChartDescription>
         </CardHeader>
         <CardContent className="chart-content">
           <div className="chart-wrapper">
-            <Radar data={performanceData} options={options} />
+            <Radar key={`radar-${key}`} data={featuredChartData.performance} options={options} />
           </div>
         </CardContent>
       </Card>
