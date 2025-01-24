@@ -1,15 +1,20 @@
-import { WelcomeSection } from "@/components/home/welcome-section";
-import { StatsCards } from "@/components/dashboard/stats-cards";
-import { FeaturedCharts } from "@/components/home/featured-charts";
-import { RecentResults } from "@/components/dashboard/recent-results";
+import { HeroSection } from "@/components/home/hero-section";
+import { NextRace } from "@/components/home/next-race";
+import { DriverStats } from "@/components/home/driver-stats";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-6 space-y-8">
-      <WelcomeSection />
-      <StatsCards />
-      <FeaturedCharts />
-      <RecentResults />
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      {/* Add padding top to account for fixed navbar */}
+      <main className="flex-grow pt-32">
+        <HeroSection />
+        <NextRace />
+        <DriverStats />
+      </main>
+      <Footer />
     </div>
   );
 }
